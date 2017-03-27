@@ -7,19 +7,23 @@ buildscript {
     }
 }
 
-apply plugin: "io.ratpack.ratpack-java"
-apply plugin: 'java'
+plugins {
+    id 'org.springframework.boot' version '1.5.2.RELEASE'
+    id 'java'
+    id 'io.ratpack.ratpack-java' version '1.4.5'
+}
 
 repositories {
     jcenter()
 }
 
 dependencies {
+    compile('org.springframework.boot:spring-boot-starter-web')
+    compile 'org.slf4j:slf4j-api:1.7.21'
     testCompile ratpack.dependency('test')
     testCompile 'org.spockframework:spock-core:1.0-groovy-2.4'
     testCompile 'cglib:cglib:2.2.2'
     testCompile 'org.objenesis:objenesis:2.1'
-    compile 'org.slf4j:slf4j-api:1.7.21'
     testCompile 'junit:junit:4.12'
 
 }
