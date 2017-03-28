@@ -1,0 +1,5 @@
+logging:
+  pattern:
+    console: '%date - [%level] - %logger %thread %X{transId} %n%message%n%xException%n'
+  level:
+   ROOT: info
