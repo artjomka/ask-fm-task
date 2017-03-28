@@ -1,6 +1,7 @@
 package lv.askfm.domain;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
@@ -11,6 +12,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 
 @Getter
 @Setter
+@Entity
 public class Country {
 
   @Id

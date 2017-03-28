@@ -11,12 +11,14 @@ import java.time.LocalDateTime;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
 @Getter
 @Setter
+@ToString(exclude = {"id"})
 public class Question {
 
   @Id
