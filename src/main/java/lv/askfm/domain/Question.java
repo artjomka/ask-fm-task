@@ -1,4 +1,4 @@
-package lv.askfm.config.lv.askfm.domain;
+package lv.askfm.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

@@ -1,4 +1,4 @@
-package lv.askfm.config.lv.askfm.repository;
+package lv.askfm.repository;
 
 import org.springframework.data.repository.CrudRepository;
 
