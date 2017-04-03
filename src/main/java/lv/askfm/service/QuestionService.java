@@ -23,6 +23,7 @@ public class QuestionService {
   public Question ask(Question question, String ipAddress) {
     final Country country = countryResolverService.getCountry(ipAddress);
     question.setCountry(country);
-    return questionRepository.save(question);
+    questionRepository.save(question);
+    return question;
   }
 }
