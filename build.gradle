@@ -1,29 +1,35 @@
 buildscript {
-    repositories {
-        jcenter()
-    }
-    dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.2.RELEASE")
-    }
+  repositories {
+    jcenter()
+  }
+  dependencies {
+    classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.2.RELEASE")
+  }
 }
 
+
 plugins {
-    id 'org.springframework.boot' version '1.5.2.RELEASE'
-    id 'java'
+  id 'org.springframework.boot' version '1.5.2.RELEASE'
+  id 'java'
+  id 'idea'
+  id 'groovy'
 }
 
 repositories {
-    jcenter()
+  jcenter()
 }
 
 dependencies {
-    compile 'org.slf4j:slf4j-api:1.7.21'
-    compile 'org.springframework.boot:spring-boot-starter-data-jpa:1.5.2.RELEASE'
-    compile 'com.h2database:h2:1.4.194'
-    compile 'org.projectlombok:lombok:1.16.16'
+  ext['spock.version'] = '1.1-groovy-2.4-rc-4'
+  compile 'org.slf4j:slf4j-api:1.7.21'
+  compile 'org.springframework.boot:spring-boot-starter-data-jpa:1.5.2.RELEASE'
+  compile 'com.h2database:h2:1.4.194'
+  compile 'org.projectlombok:lombok:1.16.16'
+  compile 'org.springframework.boot:spring-boot-starter-data-rest'
 
-    testCompile 'org.spockframework:spock-core:1.0-groovy-2.4'
-    testCompile 'cglib:cglib:2.2.2'
-    testCompile 'org.objenesis:objenesis:2.1'
+  testCompile 'org.springframework.boot:spring-boot-starter-test:1.5.2.RELEASE'
+  testCompile 'org.spockframework:spock-core:1.1-groovy-2.4-rc-4'
+  testCompile 'org.spockframework:spock-spring:1.1-groovy-2.4-rc-4'
 
+  testRuntime 'cglib:cglib-nodep:3.2.4'
 }

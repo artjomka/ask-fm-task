@@ -5,10 +5,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.validation.constraints.NotNull;
-
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -26,13 +25,11 @@ public class Question {
   private Long id;
 
   @Column(columnDefinition = "timestamp default current_timestamp", nullable = false)
-  @NotNull
   private LocalDateTime created = LocalDateTime.now();
 
   @Column
-  private String question;
+  private String text;
 
   @ManyToOne
   private Country country;
-
 }
