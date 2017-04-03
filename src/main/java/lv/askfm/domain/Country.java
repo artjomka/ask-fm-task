@@ -5,14 +5,18 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
 @Getter
 @Setter
 @Entity
+@EqualsAndHashCode(exclude = {"id", "limitPerSecond"})
+@ToString
 public class Country {
 
   @Id
@@ -26,6 +30,6 @@ public class Country {
   private String code;
 
   @Column
-  private Long limitPerSecond;
+  private Integer limitPerSecond;
 
 }

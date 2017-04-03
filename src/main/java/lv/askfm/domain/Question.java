@@ -7,6 +7,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import java.time.LocalDateTime;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
@@ -24,12 +27,13 @@ public class Question {
   @GeneratedValue(strategy = IDENTITY)
   private Long id;
 
-  @Column(columnDefinition = "timestamp default current_timestamp", nullable = false)
+  @Column
   private LocalDateTime created = LocalDateTime.now();
 
   @Column
   private String text;
 
   @ManyToOne
+  @Cascade(CascadeType.PERSIST)
   private Country country;
 }
