@@ -1,5 +1,8 @@
 package lv.askfm.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,5 +28,15 @@ public class QuestionService {
     question.setCountry(country);
     questionRepository.save(question);
     return question;
+  }
+
+  public List<Question> findQuestionsByCountryCode(String countryCode) {
+    return questionRepository.findByCountryCode(countryCode);
+  }
+
+  public List<Question> findAll() {
+    List<Question> result = new ArrayList<>();
+    questionRepository.findAll().forEach(result::add);
+    return result;
   }
 }

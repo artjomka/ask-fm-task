@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -21,6 +21,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Getter
 @Setter
 @ToString(exclude = {"id"})
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Question {
 
   @Id
@@ -34,6 +35,6 @@ public class Question {
   private String text;
 
   @ManyToOne
-  @Cascade(CascadeType.PERSIST)
+  @Cascade(CascadeType.MERGE)
   private Country country;
 }
