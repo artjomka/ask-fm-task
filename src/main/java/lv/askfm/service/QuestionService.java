@@ -6,7 +6,6 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import lv.askfm.domain.Country;
 import lv.askfm.domain.Question;
 import lv.askfm.integration.CountryResolverService;
 import lv.askfm.repository.QuestionRepository;
@@ -24,8 +23,7 @@ public class QuestionService {
 
   @Transactional
   public Question ask(Question question, String ipAddress) {
-    final Country country = countryResolverService.getCountry(ipAddress);
-    question.setCountry(country);
+    question.setCountry(countryResolverService.getCountry(ipAddress));
     questionRepository.save(question);
     return question;
   }

@@ -4,6 +4,7 @@ import lv.askfm.domain.Country
 import lv.askfm.domain.Question
 import lv.askfm.integration.CountryResolverService
 import lv.askfm.repository.QuestionRepository
+import spock.lang.Ignore
 import spock.lang.Specification
 
 class QuestionServiceSpec extends Specification {
@@ -24,6 +25,18 @@ class QuestionServiceSpec extends Specification {
     result.country.code == 'lv'
     result.country.name == 'Latvia'
     result.country.limitPerSecond == 5
+  }
 
+  @Ignore
+  def "should limit question per country"() {
+    given:
+    def questionService = new QuestionService(countryResolverService, questionRepository)
+    when:
+    6.times {
+      questionService.ask(new Question(text: "Hello "), '127.0.0.1')
+    }
+    then:
+    6 * countryResolverService.getCountry(_) >> new Country(name: "Latvia", code: "lv", limitPerSecond: 5)
+    5 * questionRepository.save(_)
   }
 }

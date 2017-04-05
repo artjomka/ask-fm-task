@@ -2,7 +2,7 @@ country:
  defaultlimit: 5
  resolver:
   url: freegeoip.net/json/
-
+badwords: badword1,badword2,badword3
 logging:
   pattern:
     console: '%date - [%level] - %logger %thread %X{transId} %n%message%n%xException%n'
