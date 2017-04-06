@@ -27,7 +27,7 @@ public class CountryResolverService {
   public Country getCountry(String ipAddress) {
     CountryResponse countryResponse = getCountryByIp(ipAddress);
     return countryRepository.findByCode(countryResponse.getCountryCode())
-        .orElse(countryRepository.save(createCountryFromResponse(countryResponse)));
+        .orElse(createCountryFromResponse(countryResponse));
   }
 
   private Country createCountryFromResponse(CountryResponse countryResponse) {
@@ -45,7 +45,7 @@ public class CountryResolverService {
 
   public Country defaultCountry() {
     return countryRepository.findByCode(DEFAULT_COUNTRY_CODE)
-        .orElse(countryRepository.save(createDefaultCountry()));
+        .orElse(createDefaultCountry());
   }
 
   private Country createDefaultCountry() {

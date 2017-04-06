@@ -4,11 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import java.time.LocalDateTime;
-
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.CascadeType;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
@@ -34,7 +30,6 @@ public class Question {
   @Column
   private String text;
 
-  @ManyToOne
-  @Cascade(CascadeType.MERGE)
-  private Country country;
+  @Column
+  private String countryCode;
 }

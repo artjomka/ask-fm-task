@@ -15,7 +15,7 @@ class QuestionServiceSpec extends Specification {
 
   def " should return question with country "() {
     given:
-    def questionService = new QuestionService(countryResolverService, questionRepository)
+    def questionService = new QuestionService(countryResolverService, questionRepository, countryRepository)
     when:
     def result = questionService.ask(new Question(text: "Hello "), '127.0.0.1')
     then:
@@ -30,7 +30,7 @@ class QuestionServiceSpec extends Specification {
   @Ignore
   def "should limit question per country"() {
     given:
-    def questionService = new QuestionService(countryResolverService, questionRepository)
+    def questionService = new QuestionService(countryResolverService, questionRepository, countryRepository)
     when:
     6.times {
       questionService.ask(new Question(text: "Hello "), '127.0.0.1')

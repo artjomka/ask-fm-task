@@ -6,12 +6,14 @@ import lv.askfm.domain.Question
 import lv.askfm.integration.CountryResolverService
 import lv.askfm.repository.CountryRepository
 import lv.askfm.repository.QuestionRepository
+import lv.askfm.service.QuestionService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.web.client.TestRestTemplate
 import org.springframework.context.annotation.Import
 import org.springframework.http.HttpStatus
 import org.springframework.test.annotation.DirtiesContext
+import org.springframework.test.context.transaction.AfterTransaction
 import org.springframework.test.context.transaction.BeforeTransaction
 import org.springframework.transaction.annotation.Transactional
 import spock.lang.Specification
@@ -33,22 +35,27 @@ class QuestionControllerSpec extends Specification {
   CountryRepository countryRepository
 
   @Autowired
-  CountryResolverService countryResolverService
+  QuestionService questionService
+
+  CountryResolverService countryResolverService = Mock()
+
 
   def setup() {
-    countryResolverService.getCountry(_) >> new Country(code: "ru", name: "Russia", limitPerSecond: 5l)
+    questionService.countryResolverService = countryResolverService
   }
 
+  @Transactional
   def "Should save question asked by user and return location"() {
     when:
     def responseEntity = restTemplate.postForEntity("/ask", new Question(text: "Do you like pasta?"), Question.class)
 
     then:
+    countryResolverService.getCountry(_) >> new Country(code: "ru", name: "Russia", limitPerSecond: 5l)
     responseEntity.statusCode == HttpStatus.OK
     responseEntity.getHeaders().get("Content-Type").get(0).contains("application/json")
     responseEntity.getBody()
     responseEntity.getBody().text == "Do you like pasta?"
-    responseEntity.getBody().country.code == "ru".toLowerCase()
+    responseEntity.getBody().countryCode == "ru".toLowerCase()
   }
 
 
@@ -58,14 +65,13 @@ class QuestionControllerSpec extends Specification {
     def russia = new Country(code: "ru", name: "Russia", limitPerSecond: 5)
     countryRepository.save(latvia)
     countryRepository.save(russia)
-    questionRepository.save(new Question(text: "How are you world?", country: latvia))
-    questionRepository.save(new Question(text: "Second question world?", country: latvia))
-    questionRepository.save(new Question(text: "How do you do? ", country: russia))
+    questionRepository.save(new Question(text: "How are you world?", countryCode: latvia.code))
+    questionRepository.save(new Question(text: "Second question world?", countryCode: latvia.code))
+    questionRepository.save(new Question(text: "How do you do? ", countryCode: russia.code))
   }
 
   @Transactional
   def "Should fetch questions by country code"() {
-
     when:
     def responseEntity = restTemplate.getForEntity("/find?countryCode=lv", List)
     then:
@@ -82,5 +88,11 @@ class QuestionControllerSpec extends Specification {
     responseEntity.statusCode == HttpStatus.OK
     responseEntity.getHeaders().get("Content-Type").get(0).contains("application/json")
     responseEntity.getBody().size() == 3
+  }
+
+  @AfterTransaction
+  def "cleanup"() {
+    countryRepository.deleteAll()
+    questionRepository.deleteAll()
   }
 }

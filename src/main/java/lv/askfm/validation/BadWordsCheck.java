@@ -5,11 +5,13 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 import lv.askfm.config.ApplicationProperties;
 import lv.askfm.domain.Question;
 import lv.askfm.rest.exception.BadWordFound;
 
+@Component
 public class BadWordsCheck implements QuestionValidation {
 
   private static final Logger LOG = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
