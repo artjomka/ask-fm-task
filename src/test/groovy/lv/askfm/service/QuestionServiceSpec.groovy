@@ -22,7 +22,7 @@ class QuestionServiceSpec extends Specification {
     def questionService = new QuestionService(countryResolverService, questionRepository, countryRepository, questionValidation)
     def created = LocalDateTime.now()
     when:
-    def result = questionService.ask(new Question(text: "Hello ", created: created), '127.0.0.1')
+    def result = questionService.ask(new Question(text: "Hello ", created: created), '127.0.0.1', created)
     then:
     1 * countryResolverService.getCountry(_) >> new Country(name: "Latvia", code: "lv", limitPerSecond: 5)
     1 * questionRepository.save(_)

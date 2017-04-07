@@ -1,5 +1,6 @@
 package lv.askfm.service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,11 +33,11 @@ public class QuestionService {
   }
 
   @Transactional
-  public Question ask(Question question, String ipAddress) {
+  public Question ask(Question question, String ipAddress, LocalDateTime creationDate) {
     final Country country = countryResolverService.getCountry(ipAddress);
     question.setCountryCode(country.getCode());
-    questionValidation.validate(question);
-
+    question.setCreated(creationDate);
+    questionValidation.validate(question, country);
     countryRepository.save(country);
     questionRepository.save(question);
     return question;

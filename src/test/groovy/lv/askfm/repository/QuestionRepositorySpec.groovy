@@ -3,6 +3,7 @@ package lv.askfm.repository
 import lv.askfm.domain.Question
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest
+import org.springframework.test.context.transaction.AfterTransaction
 import org.springframework.test.context.transaction.BeforeTransaction
 import org.springframework.transaction.annotation.Transactional
 import spock.lang.Specification
@@ -52,5 +53,10 @@ class QuestionRepositorySpec extends Specification {
     result.each {
       it.countryCode == "ru"
     }
+  }
+
+  @AfterTransaction
+  def "clean up"() {
+    questionRepository.deleteAll()
   }
 }

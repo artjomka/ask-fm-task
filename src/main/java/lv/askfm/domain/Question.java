@@ -6,6 +6,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.time.LocalDateTime;
 
+import org.springframework.data.annotation.CreatedDate;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
@@ -24,6 +26,7 @@ public class Question {
   @GeneratedValue(strategy = IDENTITY)
   private Long id;
 
+  @CreatedDate
   @Column(columnDefinition = "timestamp default current_timestamp", nullable = false)
   private LocalDateTime created;
 

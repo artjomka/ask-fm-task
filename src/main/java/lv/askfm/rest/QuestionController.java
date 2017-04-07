@@ -2,6 +2,7 @@ package lv.askfm.rest;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.websocket.server.PathParam;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
@@ -26,7 +27,7 @@ public class QuestionController {
 
   @PostMapping(path = "/ask", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<Question> ask(@RequestBody Question question, HttpServletRequest request) {
-    final Question askedQuestion = questionService.ask(question, request.getRemoteAddr());
+    final Question askedQuestion = questionService.ask(question, request.getRemoteAddr(), LocalDateTime.now());
 
     return new ResponseEntity<>(askedQuestion, HttpStatus.OK);
   }

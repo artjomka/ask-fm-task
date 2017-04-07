@@ -18,6 +18,8 @@ import org.springframework.test.context.transaction.BeforeTransaction
 import org.springframework.transaction.annotation.Transactional
 import spock.lang.Specification
 
+import java.time.LocalDateTime
+
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT
 
 @SpringBootTest(webEnvironment = RANDOM_PORT)
@@ -44,6 +46,18 @@ class QuestionControllerSpec extends Specification {
     questionService.countryResolverService = countryResolverService
   }
 
+  @BeforeTransaction
+  def "Populate database data "() {
+    def latvia = new Country(code: "lv", name: "Latvia", limitPerSecond: 5)
+    def russia = new Country(code: "ru", name: "Russia", limitPerSecond: 5)
+    countryRepository.save(latvia)
+    countryRepository.save(russia)
+    questionRepository.save(new Question(text: "How are you world?", countryCode: latvia.code, created: LocalDateTime.now()))
+    questionRepository.save(new Question(text: "Second question world?", countryCode: latvia.code, created: LocalDateTime.now()))
+    questionRepository.save(new Question(text: "How do you do? ", countryCode: russia.code, created: LocalDateTime.now()))
+  }
+
+
   @Transactional
   def "Should save question asked by user and return location"() {
     when:
@@ -56,18 +70,6 @@ class QuestionControllerSpec extends Specification {
     responseEntity.getBody()
     responseEntity.getBody().text == "Do you like pasta?"
     responseEntity.getBody().countryCode == "ru".toLowerCase()
-  }
-
-
-  @BeforeTransaction
-  def "Populate database data "() {
-    def latvia = new Country(code: "lv", name: "Latvia", limitPerSecond: 5)
-    def russia = new Country(code: "ru", name: "Russia", limitPerSecond: 5)
-    countryRepository.save(latvia)
-    countryRepository.save(russia)
-    questionRepository.save(new Question(text: "How are you world?", countryCode: latvia.code))
-    questionRepository.save(new Question(text: "Second question world?", countryCode: latvia.code))
-    questionRepository.save(new Question(text: "How do you do? ", countryCode: russia.code))
   }
 
   @Transactional
