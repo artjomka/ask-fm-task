@@ -2,9 +2,12 @@ package lv.askfm.rest;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.websocket.server.PathParam;
+import java.lang.invoke.MethodHandles;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +22,8 @@ import lv.askfm.service.QuestionService;
 @RestController
 public class QuestionController {
 
+  private static final Logger LOG = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
+
   private final QuestionService questionService;
 
   public QuestionController(QuestionService questionService) {
@@ -27,8 +32,8 @@ public class QuestionController {
 
   @PostMapping(path = "/ask", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<Question> ask(@RequestBody Question question, HttpServletRequest request) {
+    LOG.info("Address " + request.getRemoteAddr() + " asking question");
     final Question askedQuestion = questionService.ask(question, request.getRemoteAddr(), LocalDateTime.now());
-
     return new ResponseEntity<>(askedQuestion, HttpStatus.OK);
   }
 
