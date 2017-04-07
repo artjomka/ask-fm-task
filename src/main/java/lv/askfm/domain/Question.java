@@ -24,12 +24,10 @@ public class Question {
   @GeneratedValue(strategy = IDENTITY)
   private Long id;
 
-  @Column
-  private LocalDateTime created = LocalDateTime.now();
+  @Column(columnDefinition = "timestamp default current_timestamp", nullable = false)
+  private LocalDateTime created;
 
-  @Column
   private String text;
 
-  @Column
   private String countryCode;
 }

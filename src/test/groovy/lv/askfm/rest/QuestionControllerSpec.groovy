@@ -60,7 +60,7 @@ class QuestionControllerSpec extends Specification {
 
 
   @BeforeTransaction
-  def populateQuestionTable() {
+  def "Populate database data "() {
     def latvia = new Country(code: "lv", name: "Latvia", limitPerSecond: 5)
     def russia = new Country(code: "ru", name: "Russia", limitPerSecond: 5)
     countryRepository.save(latvia)
@@ -91,7 +91,7 @@ class QuestionControllerSpec extends Specification {
   }
 
   @AfterTransaction
-  def "cleanup"() {
+  def "cleanup tables"() {
     countryRepository.deleteAll()
     questionRepository.deleteAll()
   }

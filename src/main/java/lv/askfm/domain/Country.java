@@ -1,12 +1,8 @@
 package lv.askfm.domain;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import java.util.List;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -26,17 +22,9 @@ public class Country {
   @GeneratedValue(strategy = IDENTITY)
   private Long id;
 
-  @Column
   private String name;
 
-  @Column
   private String code;
 
-  @Column
   private Integer limitPerSecond;
-
-  @Column
-  @OneToMany(cascade = CascadeType.ALL)
-  private List<Question> questions;
-
 }

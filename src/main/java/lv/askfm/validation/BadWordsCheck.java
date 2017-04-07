@@ -12,7 +12,7 @@ import lv.askfm.domain.Question;
 import lv.askfm.rest.exception.BadWordFound;
 
 @Component
-public class BadWordsCheck implements QuestionValidation {
+public class BadWordsCheck {
 
   private static final Logger LOG = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
   private final ApplicationProperties applicationProperties;
@@ -21,7 +21,6 @@ public class BadWordsCheck implements QuestionValidation {
     this.applicationProperties = applicationProperties;
   }
 
-  @Override
   public void validate(Question question) {
     final List<String> badwords = applicationProperties.getBadwords();
     final boolean badwordFound = badwords.parallelStream().anyMatch(badword -> question.getText().contains(badword));
