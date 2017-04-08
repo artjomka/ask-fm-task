@@ -16,7 +16,7 @@ plugins {
 }
 
 bootRun {
-  args = ["-Djava.net.preferIPv4Stack=true"]
+  jvmArgs = ["-Djava.net.preferIPv4Stack=true"]
 }
 
 repositories {

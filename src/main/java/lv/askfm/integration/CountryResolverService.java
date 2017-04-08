@@ -31,10 +31,15 @@ public class CountryResolverService {
   }
 
   private Country createCountryFromResponse(CountryResponse countryResponse) {
+    if (countryResponse.getCountryCode().isEmpty()) {
+      return createDefaultCountry();
+    }
+
     Country country = new Country();
     country.setName(countryResponse.getCountryName());
+    country.setCode(countryResponse.getCountryCode());
     country.setLimitPerSecond(applicationProperties.getDefaultlimit());
-    return null;
+    return country;
   }
 
   @HystrixCommand(fallbackMethod = "defaultCountry")

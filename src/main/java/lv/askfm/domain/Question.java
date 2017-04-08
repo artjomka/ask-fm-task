@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.annotation.CreatedDate;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -28,6 +29,7 @@ public class Question {
 
   @CreatedDate
   @Column(columnDefinition = "timestamp default current_timestamp", nullable = false)
+  @JsonIgnore
   private LocalDateTime created;
 
   private String text;

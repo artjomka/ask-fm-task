@@ -64,12 +64,12 @@ class QuestionControllerSpec extends Specification {
     def responseEntity = restTemplate.postForEntity("/ask", new Question(text: "Do you like pasta?"), Question.class)
 
     then:
-    countryResolverService.getCountry(_) >> new Country(code: "ru", name: "Russia", limitPerSecond: 5l)
+    countryResolverService.getCountry(_) >> new Country(code: "RU", name: "Russia", limitPerSecond: 5l)
     responseEntity.statusCode == HttpStatus.OK
     responseEntity.getHeaders().get("Content-Type").get(0).contains("application/json")
     responseEntity.getBody()
     responseEntity.getBody().text == "Do you like pasta?"
-    responseEntity.getBody().countryCode == "ru".toLowerCase()
+    responseEntity.getBody().countryCode.equalsIgnoreCase "ru"
   }
 
   @Transactional

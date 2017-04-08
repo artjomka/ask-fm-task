@@ -8,7 +8,6 @@ import lombok.Setter;
 @Setter
 public class CountryResponse {
 
-  private String ip;
 
   @JsonProperty(value = "country_code")
   private String countryCode;
