@@ -3,34 +3,47 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.0.6.RELEASE")
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:2.0.6.RELEASE"
+        classpath "io.franzbecker:gradle-lombok:1.14"
     }
 }
 plugins {
     id 'java'
     id 'idea'
     id 'groovy'
-    id 'org.springframework.boot'
-    id 'io.spring.dependency-management'
+    
 }
+
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+apply plugin: 'io.franzbecker.gradle-lombok'
 
 repositories {
     mavenCentral()
 }
 
+ext['groovy.version'] = '2.5.0'
+ext['spock.version'] = '1.2-groovy-2.5'
+
 dependencies {
-    ext['spock.version'] = '1.2-groovy-2.5'
+    
     compile 'org.slf4j:slf4j-api:1.7.21'
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '2.0.6.RELEASE'
     compile group: 'org.projectlombok', name: 'lombok', version: '1.18.2'
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '2.0.6.RELEASE'
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-parent', version: '2.0.6.RELEASE'
-    compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-hystrix', version: '1.4.6.RELEASE'
+    compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-netflix-hystrix', version: '2.0.2.RELEASE'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '2.0.6.RELEASE'
     compile group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: '2.9.7'
-
+    compile 'org.codehaus.groovy:groovy-all'
+    compile group: 'org.testcontainers', name: 'spock', version: '1.9.1'
+    compile group: 'org.testcontainers', name: 'testcontainers', version: '1.9.1'
+    compile 'com.h2database:h2:1.4.197'
+    
     testCompile 'org.springframework.boot:spring-boot-starter-test:2.0.6.RELEASE'
     testCompile 'org.spockframework:spock-core:1.2-groovy-2.5'
     testCompile 'org.spockframework:spock-spring:1.2-groovy-2.5'
+    testCompile group: 'org.testcontainers', name: 'postgresql', version: '1.9.1'
 
     testRuntime 'cglib:cglib-nodep:3.2.4'
 }
