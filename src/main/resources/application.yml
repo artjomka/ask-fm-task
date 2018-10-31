@@ -1,10 +1,22 @@
 country:
- defaultlimit: 5
- resolver:
-  url: http://ip-api.com/json/
+  defaultlimit: 5
+  resolver:
+    url: http://ip-api.com/json/
 badwords: badword1,badword2,badword3
 logging:
   pattern:
     console: '%date - [%level] - %logger %thread %X{transId} %n%message%n%xException%n'
   level:
-   ROOT: info
+    ROOT: info
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    username: dbuser
+    password: dbpassword
+    url: jdbc:postgresql://localhost:5432/question
+  flyway:
+    user: dbuser
+    password: dbpassword
+  jpa:
+    properties:
+      hibernate.temp.use_jdbc_metadata_defaults: false

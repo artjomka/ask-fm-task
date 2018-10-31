@@ -11,7 +11,7 @@ plugins {
     id 'java'
     id 'idea'
     id 'groovy'
-    
+
 }
 
 apply plugin: 'org.springframework.boot'
@@ -26,7 +26,7 @@ ext['groovy.version'] = '2.5.0'
 ext['spock.version'] = '1.2-groovy-2.5'
 
 dependencies {
-    
+
     compile 'org.slf4j:slf4j-api:1.7.21'
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '2.0.6.RELEASE'
     compile group: 'org.projectlombok', name: 'lombok', version: '1.18.2'
@@ -35,15 +35,20 @@ dependencies {
     compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-netflix-hystrix', version: '2.0.2.RELEASE'
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '2.0.6.RELEASE'
     compile group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: '2.9.7'
-    compile 'org.codehaus.groovy:groovy-all'
     compile group: 'org.testcontainers', name: 'spock', version: '1.9.1'
     compile group: 'org.testcontainers', name: 'testcontainers', version: '1.9.1'
-    compile 'com.h2database:h2:1.4.197'
-    
+    compile group: 'com.neovisionaries', name: 'nv-i18n', version: '1.23'
+    compile group: 'org.postgresql', name: 'postgresql', version: '42.2.5'
+    compile group: 'org.flywaydb', name: 'flyway-core', version: '5.2.1'
+
+
+    testCompile 'org.codehaus.groovy:groovy-all'
     testCompile 'org.springframework.boot:spring-boot-starter-test:2.0.6.RELEASE'
     testCompile 'org.spockframework:spock-core:1.2-groovy-2.5'
     testCompile 'org.spockframework:spock-spring:1.2-groovy-2.5'
     testCompile group: 'org.testcontainers', name: 'postgresql', version: '1.9.1'
+    testCompile group: 'org.testcontainers', name: 'testcontainers', version: '1.9.1'
+
 
     testRuntime 'cglib:cglib-nodep:3.2.4'
 }
