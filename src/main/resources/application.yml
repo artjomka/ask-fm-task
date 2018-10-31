@@ -1,7 +1,7 @@
 country:
  defaultlimit: 5
  resolver:
-  url: https://freegeoip.net/json/
+  url: http://ip-api.com/json/
 badwords: badword1,badword2,badword3
 logging:
   pattern:
