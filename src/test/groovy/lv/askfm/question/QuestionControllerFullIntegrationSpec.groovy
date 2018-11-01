@@ -1,4 +1,4 @@
-package lv.askfm.rest
+package lv.askfm.question
 
 import lv.askfm.question.Question
 import org.springframework.beans.factory.annotation.Autowired

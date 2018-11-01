@@ -1,4 +1,4 @@
-package lv.askfm.service
+package lv.askfm.question
 
 import lv.askfm.country.Country
 import lv.askfm.country.CountryRepository

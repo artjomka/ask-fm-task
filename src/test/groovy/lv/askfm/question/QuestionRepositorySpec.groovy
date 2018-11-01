@@ -1,7 +1,5 @@
-package lv.askfm.question.repository
+package lv.askfm.question
 
-import lv.askfm.question.Question
-import lv.askfm.question.QuestionRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest

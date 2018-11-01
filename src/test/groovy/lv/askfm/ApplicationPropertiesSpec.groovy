@@ -1,4 +1,4 @@
-package lv.askfm.config
+package lv.askfm
 
 import lv.askfm.ApplicationProperties
 import org.springframework.beans.factory.annotation.Autowired
