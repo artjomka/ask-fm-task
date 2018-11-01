@@ -1,4 +1,6 @@
-To run enter on console gradlew bootRun
+Docker need to be installed: 
+run in console `docker run --rm -P -p 127.0.0.1:5432:5432  -e POSTGRES_USER=dbuser -e POSTGRES_PASSWORD=dbpassword -e POSTGRES_DB=question -d postgres:alpine`
+and then run application with `gradlew bootRun`
 
 
 Problem definition
