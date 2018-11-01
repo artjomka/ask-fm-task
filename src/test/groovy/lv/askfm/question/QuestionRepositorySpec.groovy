@@ -10,7 +10,6 @@ import org.springframework.test.context.transaction.AfterTransaction
 import org.springframework.test.context.transaction.BeforeTransaction
 import org.springframework.transaction.annotation.Transactional
 import org.testcontainers.containers.PostgreSQLContainer
-import org.testcontainers.spock.Testcontainers
 import spock.lang.Shared
 import spock.lang.Specification
 
@@ -18,7 +17,6 @@ import java.time.LocalDateTime
 
 import static org.springframework.boot.test.util.TestPropertyValues.of
 
-@Testcontainers
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @ContextConfiguration(initializers = Initializer.class)
