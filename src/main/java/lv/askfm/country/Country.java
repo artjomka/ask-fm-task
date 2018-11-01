@@ -1,4 +1,4 @@
-package lv.askfm.domain;
+package lv.askfm.country;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;

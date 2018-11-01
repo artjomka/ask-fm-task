@@ -1,4 +1,4 @@
-package lv.askfm.config;
+package lv.askfm;
 
 
 import org.springframework.context.annotation.Bean;

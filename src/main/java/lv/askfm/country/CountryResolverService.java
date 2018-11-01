@@ -1,12 +1,9 @@
-package lv.askfm.integration;
-
-import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
+package lv.askfm.country;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
-import lv.askfm.config.ApplicationProperties;
-import lv.askfm.domain.Country;
-import lv.askfm.repository.CountryRepository;
+import lv.askfm.ApplicationProperties;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 @Service
 public class CountryResolverService {

@@ -1,9 +1,7 @@
-package lv.askfm.integration;
+package lv.askfm.country;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
 @Data
 public class CountryResponse {

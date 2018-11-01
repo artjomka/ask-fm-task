@@ -1,12 +1,10 @@
-package lv.askfm.repository;
-
-import java.time.LocalDateTime;
-import java.util.List;
+package lv.askfm.question;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import lv.askfm.domain.Question;
+import java.time.LocalDateTime;
+import java.util.List;
 
 @Repository
 public interface QuestionRepository extends CrudRepository<Question, Long> {

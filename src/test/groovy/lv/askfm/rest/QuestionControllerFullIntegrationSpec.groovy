@@ -1,6 +1,6 @@
 package lv.askfm.rest
 
-import lv.askfm.domain.Question
+import lv.askfm.question.Question
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase
 import org.springframework.boot.test.context.SpringBootTest

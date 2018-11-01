@@ -1,12 +1,10 @@
-package lv.askfm.validation;
+package lv.askfm.question.validation;
 
-import java.time.LocalDateTime;
-
+import lv.askfm.country.Country;
+import lv.askfm.question.QuestionRepository;
 import org.springframework.stereotype.Component;
 
-import lv.askfm.domain.Country;
-import lv.askfm.repository.QuestionRepository;
-import lv.askfm.rest.exception.QuestionAmountLimitExceeded;
+import java.time.LocalDateTime;
 
 @Component
 public class QuestionLimitCheck {

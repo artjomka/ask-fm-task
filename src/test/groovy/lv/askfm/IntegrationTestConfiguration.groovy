@@ -1,6 +1,6 @@
 package lv.askfm
 
-import lv.askfm.integration.CountryResolverService
+import lv.askfm.country.CountryResolverService
 import org.springframework.context.annotation.Bean
 import spock.mock.DetachedMockFactory
 

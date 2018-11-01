@@ -1,4 +1,4 @@
-package lv.askfm.rest.exception;
+package lv.askfm.question.validation;
 
 public class QuestionAmountLimitExceeded extends RuntimeException {
 

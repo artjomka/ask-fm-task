@@ -1,12 +1,12 @@
 package lv.askfm.rest
 
 import lv.askfm.IntegrationTestConfiguration
-import lv.askfm.domain.Country
-import lv.askfm.domain.Question
-import lv.askfm.integration.CountryResolverService
-import lv.askfm.repository.CountryRepository
-import lv.askfm.repository.QuestionRepository
-import lv.askfm.service.QuestionService
+import lv.askfm.country.Country
+import lv.askfm.country.CountryRepository
+import lv.askfm.country.CountryResolverService
+import lv.askfm.question.Question
+import lv.askfm.question.QuestionRepository
+import lv.askfm.question.QuestionService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase
 import org.springframework.boot.test.context.SpringBootTest

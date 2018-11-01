@@ -1,4 +1,4 @@
-package lv.askfm.domain;
+package lv.askfm.question;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;

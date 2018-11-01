@@ -1,4 +1,4 @@
-package lv.askfm.config.converter;
+package lv.askfm;
 
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;

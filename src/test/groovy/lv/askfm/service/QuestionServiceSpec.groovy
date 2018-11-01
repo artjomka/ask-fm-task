@@ -1,11 +1,12 @@
 package lv.askfm.service
 
-import lv.askfm.domain.Country
-import lv.askfm.domain.Question
-import lv.askfm.integration.CountryResolverService
-import lv.askfm.repository.CountryRepository
-import lv.askfm.repository.QuestionRepository
-import lv.askfm.validation.QuestionValidation
+import lv.askfm.country.Country
+import lv.askfm.country.CountryRepository
+import lv.askfm.country.CountryResolverService
+import lv.askfm.question.Question
+import lv.askfm.question.QuestionRepository
+import lv.askfm.question.QuestionService
+import lv.askfm.question.validation.QuestionValidationService
 import spock.lang.Specification
 
 import java.time.LocalDateTime
@@ -15,7 +16,7 @@ class QuestionServiceSpec extends Specification {
   CountryResolverService countryResolverService = Mock()
   QuestionRepository questionRepository = Mock()
   CountryRepository countryRepository = Mock()
-  QuestionValidation questionValidation = Mock()
+  QuestionValidationService questionValidation = Mock()
 
   def " should return question with country "() {
     given:

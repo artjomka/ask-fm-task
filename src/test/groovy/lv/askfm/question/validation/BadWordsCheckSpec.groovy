@@ -1,8 +1,7 @@
-package lv.askfm.validation
+package lv.askfm.question.validation
 
-import lv.askfm.config.ApplicationProperties
-import lv.askfm.domain.Question
-import lv.askfm.rest.exception.BadWordFound
+import lv.askfm.ApplicationProperties
+import lv.askfm.question.Question
 import spock.lang.Specification
 
 class BadWordsCheckSpec extends Specification {
